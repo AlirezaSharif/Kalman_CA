@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Forawrd" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#">
+    <component name="Forward">
+        <variable name="t" units="dimensionless"/>
+        <variable initial_value="0" name="x" units="dimensionless"/>
+        <variable initial_value="10" name="x_init" units="dimensionless"/>
+        <variable initial_value="1" name="p" units="dimensionless"/>
+        <variable name="x_final" units="dimensionless"/>
+        <variable initial_value="0" name="a" units="dimensionless"/>
+        <variable initial_value="12" name="a_init" units="dimensionless"/>
+        <variable initial_value="1" name="q" units="dimensionless"/>
+        <variable name="a_final" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>x</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <apply>
+                                <plus/>
+                                <ci>x</ci>
+                                <ci>x_init</ci>
+                            </apply>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                    </apply>
+                    <ci>p</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>x_final</ci>
+                <apply>
+                    <plus/>
+                    <ci>x</ci>
+                    <ci>x_init</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>a</ci>
+                </apply>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <apply>
+                                <plus/>
+                                <ci>a</ci>
+                                <ci>a_init</ci>
+                            </apply>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                    </apply>
+                    <ci>q</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>a_final</ci>
+                <apply>
+                    <plus/>
+                    <ci>a</ci>
+                    <ci>a_init</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>
