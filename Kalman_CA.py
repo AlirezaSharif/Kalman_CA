@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import yaml
 
 
-file_path = 'Mohammad.yaml'
+file_path = 'config.yaml'
 
 
 with open(file_path, 'r') as file:
@@ -60,7 +60,7 @@ def observation_operator(x: np.ndarray, n_states: int, z: np.ndarray, n_observat
 
 def data_generator(numSteps):
     timeSeries = np.zeros((1, numSteps))
-    y = SimulationHelper(f"{config['File_name']}.cellml", 0.00001, 0.001 * num_steps, maximumNumberofSteps=1000, pre_time=0)
+    y = SimulationHelper(f"{config['File_name']}.cellml", config['max_step_size'], config['Sampling_rate'] * num_steps, maximumNumberofSteps= config['maximumNumberofInteranlSteps'], pre_time=0)
     x_1 = [i  for i in y.simulation.results().states().keys()]
     parameters_to_estimate = [config['Model_name']  + i for i in config['parameters_to_estimate']]
     y.set_param_vals(parameters_to_estimate, config['true_parameters'])
@@ -79,11 +79,15 @@ def data_generator(numSteps):
     return timeSeries
 
 num_steps = config['num_steps']
-observations = data_generator(num_steps)
+
+if config['Verification']:
+    observations = data_generator(num_steps)
+else:
+    observations = np.load(config['Path_to_obs_data'])
 
 
 
-y = SimulationHelper(f"{config['File_name']}.cellml", 0.00001, 0.00001, maximumNumberofSteps=1000, pre_time=0)
+y = SimulationHelper(f"{config['File_name']}.cellml", config['max_step_size'], config['Sampling_rate'], maximumNumberofSteps= config['maximumNumberofInteranlSteps'], pre_time=0)
 x_0 = [i  for i in y.simulation.results().states().keys()]
 x_1 = [i for i in y.simulation.results().states().keys()]
 

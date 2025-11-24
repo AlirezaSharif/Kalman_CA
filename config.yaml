@@ -1,12 +1,16 @@
 File_name: "Forward"
 Model_name: "Forward/"
-n_observations: 2
-n_parameters: 2
-parameters_to_estimate: ["q", "p"]
-observations: ["x", "a"]
-num_steps: 2
-parameters_uncertainty: [100, 100]
-initial_state: [5, 5]
-initial_parameters: [1000, 1000]
-states_uncertainty: [1e-9, 1e-9]
-true_parameters: [15, 20]
+Sampling_rate: 0.001
+maximumNumberofInteranlSteps: 1000
+max_step_size: 0.001
+n_observations: 3
+n_parameters: 3
+parameters_to_estimate: ["q", "p", "r"]
+observations: ["y", "a", "x"]
+num_steps: 100
+parameters_uncertainty: [100, 100, 100]
+initial_parameters: [1000, 1000, 1000]
+states_uncertainty: [1e-9, 1e-9, 1e-9]
+true_parameters: [15, 20, 120]
+Verification: True
+Path_to_obs_data: None
